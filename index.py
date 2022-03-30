@@ -3,16 +3,24 @@ from task import *
 
 task = Task()
 
-# print('\033[31m' + 'Success!' + '\x1b[0m')
+task.Load()
 
 while True:
-    command = input()
+    command = input("Enter command : ")
 
     if command == "-a":
-        task.Add(input())
+        value = input("Enter your task : ")
+        task.Add(value)
+        task.Save()
     if command == "-l":
-        task.List()
+        task.Print()
     if command == "-r":
-        task.Remove(input())
+        task.Print()
+        value = int(input())
+        task.Remove(value)
     if command == "-c":
-        task.Complete(input())
+        task.Print()
+        value = int(input("Complete : "))
+        task.Complete(value)
+    if command == "-q":
+        break

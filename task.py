@@ -1,7 +1,12 @@
+import json
+
+
 class Task:
     list = []
 
-    p = """
+# print('\033[31m' + 'Success!' + '\x1b[0m')
+
+    welcome = """
 Command Line Todo application
 =============================
 
@@ -12,27 +17,35 @@ Command line arguments:
     -c   Completes an task
 """
 
-    def __init__(self) -> None:
+    def __init__(self):
         pass
 
     def Add(self, title: str):
-        self.list.append(title)
+        self.list.append({"title": title, "complete": False})
 
     def Remove(self, index: int):
         self.list.pop(index)
 
-    def List(self):
+    def Print(self):
         if len(self.list) == 0:
             print("\033[31m", "No todos for today! :)", "\x1b[0m")
             return
+        i = 0
         for line in self.list:
-            print(self.list)
+            i += 1
+            if line['complete']:
+                print("\033[37m", i, "[X]", line["title"], "\x1b[0m")
+            else:
+                print("\033[37m", i, "[ ]", line["title"], "\x1b[0m")
 
-    def Complete(self, index):
-        pass
+    def Complete(self, index: int):
+        self.list[index]["complete"] = True
 
-    def Load():
-        pass
+    def Load(self):
+        f = open("db.json", "r")
+        self.list = json.loads(f.read())
 
-    def Save():
-        pass
+    def Save(self):
+        f = open("db.json", "w")
+        f.write(json.dumps(self.list))
+        f.close()
