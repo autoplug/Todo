@@ -1,36 +1,18 @@
 #!/usr/bin/env python3
-task_list = []
-print('\033[31m' + 'Success!' + '\x1b[0m')
+from task import *
 
+task = Task()
 
-def welcome():
-    p = """
-$ todo
-
-Command Line Todo application
-=============================
-
-Command line arguments:
-    -l   Lists all the tasks
-    -a   Adds a new task
-    -r   Removes an task
-    -c   Completes an task
-    """
-    print(p)
-
-
-def Add_task(subject):
-    task_list.append({"title": subject})
-
-
-def Print_task():
-    print(task_list)
-
+# print('\033[31m' + 'Success!' + '\x1b[0m')
 
 while True:
     command = input()
 
     if command == "-a":
-        Add_task(input())
+        task.Add(input())
     if command == "-l":
-        Print_task()
+        task.List()
+    if command == "-r":
+        task.Remove(input())
+    if command == "-c":
+        task.Complete(input())
