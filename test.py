@@ -1,13 +1,12 @@
-tasks = []
-
-tasks.append("buy milk")
-tasks.append({"title": "walk dog", "compelete": True})
-
-print(tasks)
+dic = {"name": "alireza", "family": "ijdijsd"}
 
 
-a = """
+dic["name"] = "iman"
 
+list = []
 
+list.append({"title": "buy milk", "complete": False})
 
-"""
+list[0]["name"]
+
+print(list)

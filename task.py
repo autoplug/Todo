@@ -42,10 +42,16 @@ Command line arguments:
         self.list[index]["complete"] = True
 
     def Load(self):
-        f = open("db.json", "r")
-        self.list = json.loads(f.read())
+        try:
+            f = open("db.json", "r")
+            self.list = json.loads(f.read())
+        except:
+            print("can not load var")
 
     def Save(self):
-        f = open("db.json", "w")
-        f.write(json.dumps(self.list))
-        f.close()
+        try:
+            f = open("db.json", "w")
+            f.write(json.dumps(self.list))
+            f.close()
+        except:
+            print("Can not save.")
