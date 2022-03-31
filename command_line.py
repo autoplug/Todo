@@ -3,24 +3,27 @@ from task import *
 
 task = Task()
 
-task.Load()
-
 while True:
-    command = input("Enter command : ")
+    input_string = input("Enter command : ")
+
+    command = input_string[0:3].strip()
+    arg = input_string[3:].strip()
 
     if command == "-a":
-        value = input("Enter your task : ")
-        task.Add(value)
-        task.Save()
+        task.Add(arg)
+
     if command == "-l":
         task.Print()
+
     if command == "-r":
         task.Print()
-        value = int(input())
+        value = int(arg)
         task.Remove(value)
+
     if command == "-c":
         task.Print()
-        value = int(input("Complete : "))
+        value = int(arg)
         task.Complete(value)
+
     if command == "-q":
         break

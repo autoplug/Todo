@@ -1,4 +1,6 @@
 [
-  { "title": "ododod", "complete": false },
-  { "title": "deowdwied", "complete": false }
+  { "title": "ododod", "complete": 0 },
+  { "title": "hggjhgjhgj", "complete": 0 },
+  { "title": "huhj", "complete": 0 },
+  { "title": "kjhkjh", "complete": 1 }
 ]
