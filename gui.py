@@ -71,7 +71,7 @@ def Complete():
     fill_list()
 
 
-btn_compelete = Button(main, text="complete", width="25", command=Complete)
+btn_compelete = Button(main, text="Complete", width="25", command=Complete)
 btn_compelete.place(x=10, y=445)
 
 
