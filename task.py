@@ -14,6 +14,7 @@ class Task:
         self.list.append({"title": title, "complete": 0})
         print("\u001b[32m", "Successfully add task to list.", "\u001b[0m")
         self.Save()
+        return
 
     def Remove(self, index: int):
         if index > len(self.list):
