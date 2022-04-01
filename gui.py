@@ -2,66 +2,78 @@
 from task import *
 from tkinter import *
 
+task = Task()
 
+# main window
 main = Tk()
-main.geometry("300x500")
+main.geometry("285x490")
 main.resizable(False, False)
 main.title('TODO')
-
 main.columnconfigure(0, weight=1)
 main.rowconfigure(0, weight=1)
 
 
-task = Task()
-
-
 # List
-list = Listbox(main, width="30", height="20", bd="3")
-list.grid()
+listbox = Listbox(main, width="30", height="20", bd="3")
+listbox.place(x=5, y=5)
 
 
 def fill_list():
-    for i in range(len(task.list)):
-        s = "[x] " if task.list[i]['complete'] else "[-] "
-        s += task.list[i]['title']
-        list.insert(i+1, s)
+    for i in range(listbox.size()):
+        listbox.delete(0)
+
+    for element in task.list:
+        s = "[x]  " if element['complete'] else "[-]  "
+        s += element['title']
+        listbox.insert(END, s)
 
 
 fill_list()
 
-input_text = Entry(main, width="80")
-input_text.grid()
+# input task
+input_text = Entry(main, width="28")
+input_text.place(x=10, y=355)
 
 
+# Add button and function
 def Add():
-    Add.counter += 1
-    if not input_text.get():
-        return
-    list.insert(Add.counter, input_text.get())
+    task.Add(input_text.get())
     for x in input_text.get():
         input_text.delete(0)
+    fill_list()
 
 
-Add.counter = 0
-
-btn_add = Button(main, text="Add", width="90", command=Add)
-btn_add.grid()
+btn_add = Button(main, text="Add", width="25", command=Add)
+btn_add.place(x=10, y=385)
 
 
+# Remove button and function
 def Remove():
-    list.delete(list.curselection())
-    pass
+    if len(listbox.curselection()) == 0:
+        return
+
+    if listbox.curselection()[0]:
+        task.Remove(listbox.curselection()[0])
+    fill_list()
 
 
-btn_remove = Button(main, text="Remove", width="90", command=Remove)
-btn_remove.grid()
+btn_remove = Button(main, text="Remove", width="25", command=Remove)
+btn_remove.place(x=10, y=415)
 
 
-def Compelete():
-    pass
+# Complete Button and function
+def Complete():
+    if len(listbox.curselection()) == 0:
+        return
+
+    if listbox.curselection()[0]:
+        task.Complete(listbox.curselection()[0])
+    fill_list()
 
 
-btn_compelete = Button(main, text="Compelete", width="90", command=Compelete)
-btn_compelete.grid()
+btn_compelete = Button(main, text="complete", width="25", command=Complete)
+btn_compelete.place(x=10, y=445)
 
+
+# Start the main loop
 main.mainloop()

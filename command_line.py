@@ -1,7 +1,23 @@
 #!/usr/bin/env python3
+from re import L
 from task import *
 
 task = Task()
+
+help = """
+Command Line Todo application
+=============================
+
+Command line arguments:
+    -h   Help list all command.
+    -l   Lists all the tasks.
+    -a   Adds a new task.
+    -r   Removes an task.
+    -c   Completes an task.
+    -q   Quit the app.
+"""
+
+print(help)
 
 while True:
     input_string = input("Enter command : ")
@@ -12,18 +28,22 @@ while True:
     if command == "-a":
         task.Add(arg)
 
-    if command == "-l":
+    elif command == "-l":
         task.Print()
 
-    if command == "-r":
-        task.Print()
-        value = int(arg)
+    elif command == "-r":
+        value = int(arg) - 1
         task.Remove(value)
 
-    if command == "-c":
-        task.Print()
-        value = int(arg)
+    elif command == "-c":
+        value = int(arg) - 1
         task.Complete(value)
 
-    if command == "-q":
+    elif command == "-q":
         break
+
+    elif command == "-h":
+        print(help)
+
+    else:
+        print("there is not such command.")
