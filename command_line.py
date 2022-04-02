@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-from re import L
 from task import *
 
 task = Task()

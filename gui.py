@@ -9,8 +9,6 @@ main = Tk()
 main.geometry("285x490")
 main.resizable(False, False)
 main.title('TODO')
-main.columnconfigure(0, weight=1)
-main.rowconfigure(0, weight=1)
 
 
 # List
@@ -19,9 +17,7 @@ listbox.place(x=5, y=5)
 
 
 def fill_list():
-    for i in range(listbox.size()):
-        listbox.delete(0)
-
+    listbox.delete(0, END)
     for element in task.list:
         s = "[x]  " if element['complete'] else "[-]  "
         s += element['title']
@@ -38,8 +34,7 @@ input_text.place(x=10, y=355)
 # Add button and function
 def Add():
     task.Add(input_text.get())
-    for x in input_text.get():
-        input_text.delete(0)
+    input_text.delete(0, END)
     fill_list()
 
 
@@ -49,10 +44,7 @@ btn_add.place(x=10, y=385)
 
 # Remove button and function
 def Remove():
-    if len(listbox.curselection()) == 0:
-        return
-
-    if listbox.curselection()[0]:
+    if len(listbox.curselection()) and listbox.curselection()[0]:
         task.Remove(listbox.curselection()[0])
     fill_list()
 
@@ -63,10 +55,7 @@ btn_remove.place(x=10, y=415)
 
 # Complete Button and function
 def Complete():
-    if len(listbox.curselection()) == 0:
-        return
-
-    if listbox.curselection()[0]:
+    if len(listbox.curselection()) and listbox.curselection()[0]:
         task.Complete(listbox.curselection()[0])
     fill_list()
 
