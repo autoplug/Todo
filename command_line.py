@@ -31,12 +31,18 @@ while True:
         task.Print()
 
     elif command == "-r":
-        value = int(arg) - 1
-        task.Remove(value)
+        try:
+            value = int(arg) - 1
+            task.Remove(value)
+        except ValueError:
+            print("Insert a number instead a string.")
 
     elif command == "-c":
-        value = int(arg) - 1
-        task.Complete(value)
+        try:
+            value = int(arg) - 1
+            task.Complete(value)
+        except ValueError:
+            print("Insert a number instead a string.")
 
     elif command == "-q":
         break

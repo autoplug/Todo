@@ -25,7 +25,7 @@ class Task:
     def Remove(self, index: int):
         if index > len(self.list):
             print("\033[31m",
-                  "Unable to remove: index is out of bound", "\u001b[0m")
+                  "Unable to remove: index is out of bound.", "\u001b[0m")
             return
 
         self.list.pop(index)
@@ -49,7 +49,7 @@ class Task:
     # mark task as complete
     def Complete(self, index: int):
         if index > len(self.list):
-            print("There is not task with this number.")
+            print("\033[31m", "There is not task with this number.", "\x1b[0m")
             return
 
         self.list[index]["complete"] = 0 if self.list[index]["complete"] else 1
